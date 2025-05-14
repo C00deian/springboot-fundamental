@@ -1,11 +1,15 @@
 package com.notification.demo.entities;
-
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import java.util.ArrayList;
+import java.util.List;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 @Getter
 @Setter
+@Builder
 @Entity
 @Table(name = "users")
 public class User {
@@ -18,5 +22,20 @@ public class User {
     private String email;
     @Column(nullable = false, name = "password")
     private String password;
+
+    @OneToMany(mappedBy = "user")
+    @Builder.Default
+    private List<Address> addresses = new ArrayList<>();
+
+
+    public void addAddress(Address address){
+        addresses.add(address);
+        address.setUser(this);
+    }
+
+    public void removeAddress(Address address){
+        addresses.remove(address);
+        address.setUser(null);
+    }
 
 }
