@@ -1,6 +1,7 @@
 package com.notification.demo;
 
 import com.notification.demo.entities.Address;
+import com.notification.demo.entities.Profile;
 import com.notification.demo.entities.Tag;
 import com.notification.demo.entities.User;
 import lombok.Builder;
@@ -21,9 +22,14 @@ public class DemoApplication {
 		.email("john9@gmail.com")
 		.build();
 
-	user.addTag("tag1");
-		System.out.println(user);
 
+	var profile = Profile.builder()
+			.bio("Biography")
+			.build();
+
+	user.setProfile(profile);
+	profile.setUser(user);
+		System.out.println(user);
 
 	}
 
