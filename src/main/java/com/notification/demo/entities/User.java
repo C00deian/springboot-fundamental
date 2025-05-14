@@ -2,11 +2,12 @@ package com.notification.demo.entities;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Getter
 @Setter
 @Builder
@@ -38,4 +39,21 @@ public class User {
         address.setUser(null);
     }
 
+
+
+    @ManyToMany
+    @JoinTable(
+        name = "user_tags"  ,
+        joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id")
+    )
+    @Builder.Default
+   private Set<Tag> tags = new HashSet<>();
+
+
+public void addTag(String tagName){
+    var tag = new Tag(tagName);
+    tags.add(tag);
+    tag.getUsers().add(this);
+}
 }
