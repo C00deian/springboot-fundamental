@@ -10,6 +10,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 @Builder
 @Entity
 @Table(name = "users")
