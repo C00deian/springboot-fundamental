@@ -10,7 +10,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
+//@ToString
 @Builder
 @Entity
 @Table(name = "users")
@@ -67,4 +67,9 @@ public void addTag(String tagName){
     tags.add(tag);
     tag.getUsers().add(this);
 }
+
+    public void addFavouriteProduct(Product product) {
+        favouriteProducts.add(product);
+    }
+
 }
