@@ -41,7 +41,6 @@ public class UserService {
 //       products.forEach(user::addFavouriteProduct);
 //       userRepository.save(user);
 
-
 //       delete product from wishlist
         productRepository.deleteById(2L);
 
@@ -50,6 +49,9 @@ public class UserService {
 
     }
 
-
+    @Transactional
+   public void  updateProductByCategory(){
+        productRepository.updatePriceByCategory(10 ,(short)1);
+    }
 
 }
